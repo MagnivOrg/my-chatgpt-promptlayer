@@ -14,17 +14,22 @@ client = OpenAI()
 today_date = datetime.datetime.now().strftime("%Y-%m-%d")
 location = "New York City"
 
+def calculator(function_call):
+  parsed_args = json.loads(function_call.arguments)
+  return eval(parsed_args['expression'])
+
 def parse_llm_response(response_message):
     if response_message.content is not None:
         print(response_message.content)
-        return None
-    if response_message.function_call is not None:
-        if response_message.function_call.name == "calculator":
-            parsed_args = json.loads(response_message.function_call.arguments)
-            evaluated = eval(parsed_args['expression'])
+    if response_message.tool_calls is not None:
+        tool_call = response_message.tool_calls[0]
+        call_id = tool_call.id
+        if tool_call.function.name == "calculator":
+            evaluated = calculator(tool_call.function)
             print("$ ", evaluated)
             return {
-                "role": "function",
+                "role": "tool",
+                "tool_call_id": call_id,
                 "content": str(evaluated),
                 "name": "calculator",
             }
