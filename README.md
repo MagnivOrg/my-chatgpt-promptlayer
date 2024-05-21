@@ -19,7 +19,7 @@ In this project, we will:
 1. **Clone the Repository:**
    ```bash
    git clone https://github.com/MagnivOrg/my-chatgpt-promptlayer.git
-   cd mychatgpt-demo
+   cd my-chatgpt-promptlayer
    ```
 
 2. **Set Up the Environment:**
