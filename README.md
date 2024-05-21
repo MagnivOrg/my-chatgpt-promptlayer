@@ -18,7 +18,7 @@ In this project, we will:
 
 1. **Clone the Repository:**
    ```bash
-   git clone https://github.com/MagnivOrg/mychatgpt-demo.git
+   git clone https://github.com/MagnivOrg/my-chatgpt-promptlayer.git
    cd mychatgpt-demo
    ```
 
